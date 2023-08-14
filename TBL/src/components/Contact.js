@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Container, Row, Col, FormSelect } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import contactImg from "../assets/img/logo.png";
 import "animate.css";
 import TrackVisibility from "react-on-screen";
+import "./contact.css";
 
 export const Contact = () => {
   const formInitialDetails = {
@@ -58,7 +59,7 @@ export const Contact = () => {
                     isVisible ? "animate__animated animate__zoomIn" : ""
                   }
                   src={contactImg}
-                  alt="Contact Us"
+                  alt="Register NBL"
                 />
               )}
             </TrackVisibility>
@@ -76,39 +77,36 @@ export const Contact = () => {
                   <form onSubmit={handleSubmit}>
                     <Row>
                       <Col size={12} sm={6} className="px-1">
-                        <FormSelect aria-label="Default select example">
-                          <option>Choose your club</option>
-                          <option value="1">
-                            Rotaract Club of Colombo Mid Town
-                          </option>
-                          <option value="2">
-                            Rotaract Club of Colombo Mid Town
-                          </option>
-                        </FormSelect>
-                        {/* <input
-                          type="text"
-                          value={formDetails.firstName}
-                          placeholder="First Name"
-                          onChange={(e) =>
-                            onFormUpdate("firstName", e.target.value)
-                          }
-                        /> */}
-                      </Col>
-                      <Col size={12} sm={6} className="px-1">
                         <input
                           type="text"
-                          value={formDetails.lasttName}
-                          placeholder="Last Name"
+                          value={formDetails.rotractclubname}
+                          placeholder="Name Of the Rotaract Club"
                           onChange={(e) =>
-                            onFormUpdate("lastName", e.target.value)
+                            onFormUpdate("rotractclubname", e.target.value)
                           }
                         />
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <input
+                        <select name="category" id="category" required>
+                          <option value="">Select Playing category</option>
+                          <option value="mens">Mens</option>
+                          <option value="womens">Womens</option>
+                          <option value="mixed">Mixed</option>
+                        </select>
+                      </Col>
+                      <Col size={12} sm={6} className="px-1">
+                        {/* <input
                           type="email"
                           value={formDetails.email}
                           placeholder="Email Address"
+                          onChange={(e) =>
+                            onFormUpdate("email", e.target.value)
+                          }
+                        /> */}
+                        <input
+                          type="text"
+                          value={formDetails.player1}
+                          placeholder="Player 1"
                           onChange={(e) =>
                             onFormUpdate("email", e.target.value)
                           }
@@ -118,21 +116,42 @@ export const Contact = () => {
                         <input
                           type="tel"
                           value={formDetails.phone}
-                          placeholder="Phone No."
+                          placeholder="Player 1 Phone Number"
+                          maxLength={10}
                           onChange={(e) =>
                             onFormUpdate("phone", e.target.value)
                           }
                         />
                       </Col>
-                      <Col size={12} className="px-1">
-                        <textarea
+                      <Col size={12} sm={6} className="px-1">
+                        {/* <textarea
                           rows="6"
                           value={formDetails.message}
                           placeholder="Message"
                           onChange={(e) =>
                             onFormUpdate("message", e.target.value)
                           }
-                        ></textarea>
+                        ></textarea> */}
+                      </Col>
+                      <Col size={12} sm={6} className="px-1">
+                        <input
+                          type="text"
+                          value={formDetails.player2}
+                          placeholder="Player 2"
+                          onChange={(e) =>
+                            onFormUpdate("player2name", e.target.value)
+                          }
+                        />
+                        <input
+                          type="tel"
+                          value={formDetails.phone}
+                          placeholder="Player 1 Phone Number"
+                          maxLength={10}
+                          onChange={(e) =>
+                            onFormUpdate("phone", e.target.value)
+                          }
+                        />
+
                         <button type="submit">
                           <span>{buttonText}</span>
                         </button>

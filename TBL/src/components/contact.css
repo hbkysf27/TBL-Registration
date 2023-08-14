@@ -2,7 +2,7 @@
     box-sizing: border-box;
     box-shadow: 0 15px 25px #771c18;
     border-radius: 10px;
-    color: white;
+    color: rgb(207, 95, 95);
     letter-spacing: 0.2em;
   }
 
@@ -12,7 +12,7 @@ select {
   border-color: transparent;
   font-size: 1.2rem;
   width: 100%;
-  color: #6e3838;
+  color: #a48c8c;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   border-radius: 4px;

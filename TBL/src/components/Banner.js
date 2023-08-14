@@ -19,7 +19,7 @@ export const Banner = () => {
   const handleRegisterClick = () => {
     window.location.hash = "connect"; // Update URL hash to #connect
   };
-  const period = 2000;
+  const period = 1000;
 
   useEffect(() => {
     let ticker = setInterval(() => {
@@ -35,8 +35,8 @@ export const Banner = () => {
     let i = loopNum % toRotate.length;
     let fullText = toRotate[i];
     let updatedText = isDeleting
-      ? fullText.substring(0, text.length - 1)
-      : fullText.substring(0, text.length + 1);
+      ? fullText.substring(0, text.length - 4)
+      : fullText.substring(0, text.length + 4);
 
     setText(updatedText);
 

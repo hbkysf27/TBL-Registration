@@ -4,47 +4,26 @@ import contactImg from "../assets/img/logo.png";
 import "animate.css";
 import TrackVisibility from "react-on-screen";
 import "./contact.css";
+import { useDispatch } from "react-redux";
 
 export const Contact = () => {
-  const formInitialDetails = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    message: "",
-  };
-  const [formDetails, setFormDetails] = useState(formInitialDetails);
-  const [buttonText, setButtonText] = useState("Register");
+  const [formDetails, setFormDetails] = useState({});
+  const [errors, setErrors] = useState({});
   const [status, setStatus] = useState({});
 
-  const onFormUpdate = (category, value) => {
+  const dispatch = useDispatch();
+
+  const onFormUpdate = (field, value) => {
     setFormDetails({
       ...formDetails,
-      [category]: value,
+      [field]: value,
     });
+    if (!!errors[field]) setErrors({ ...errors, [field]: null });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setButtonText("Registering...");
-    let response = await fetch("http://localhost:5000/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(formDetails),
-    });
-    setButtonText("Register");
-    let result = await response.json();
-    setFormDetails(formInitialDetails);
-    if (result.code == 200) {
-      setStatus({ succes: true, message: "Message sent successfully" });
-    } else {
-      setStatus({
-        succes: false,
-        message: "Something went wrong, please try again later.",
-      });
-    }
+    console.log(formDetails);
   };
 
   return (
@@ -79,15 +58,25 @@ export const Contact = () => {
                       <Col size={12} sm={6} className="px-1">
                         <input
                           type="text"
-                          value={formDetails.rotractclubname}
                           placeholder="Name Of the Rotaract Club"
+                          required
                           onChange={(e) =>
-                            onFormUpdate("rotractclubname", e.target.value)
+                            onFormUpdate("clubname", e.target.value)
                           }
+                          value={formDetails.clubname}
+                          maxLength={20}
                         />
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <select name="category" id="category" required>
+                        <select
+                          name="category"
+                          id="category"
+                          required
+                          onChange={(e) =>
+                            onFormUpdate("category", e.target.value)
+                          }
+                          value={formDetails.category}
+                        >
                           <option value="">Select Playing category</option>
                           <option value="mens">Mens</option>
                           <option value="womens">Womens</option>
@@ -95,66 +84,101 @@ export const Contact = () => {
                         </select>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        {/* <input
-                          type="email"
-                          value={formDetails.email}
-                          placeholder="Email Address"
-                          onChange={(e) =>
-                            onFormUpdate("email", e.target.value)
-                          }
-                        /> */}
                         <input
+                          required
                           type="text"
-                          value={formDetails.player1}
                           placeholder="Player 1"
                           onChange={(e) =>
-                            onFormUpdate("email", e.target.value)
+                            onFormUpdate("player1", e.target.value)
                           }
+                          value={formDetails.player1}
+                          maxLength={20}
                         />
                       </Col>
+
                       <Col size={12} sm={6} className="px-1">
                         <input
-                          type="tel"
-                          value={formDetails.phone}
+                          type="text"
+                          required
                           placeholder="Player 1 Phone Number"
-                          maxLength={10}
+                          maxLength={12}
                           onChange={(e) =>
-                            onFormUpdate("phone", e.target.value)
+                            onFormUpdate("phone1", e.target.value)
                           }
+                          value={formDetails.phone1}
                         />
-                      </Col>
-                      <Col size={12} sm={6} className="px-1">
-                        {/* <textarea
-                          rows="6"
-                          value={formDetails.message}
-                          placeholder="Message"
-                          onChange={(e) =>
-                            onFormUpdate("message", e.target.value)
-                          }
-                        ></textarea> */}
                       </Col>
                       <Col size={12} sm={6} className="px-1">
                         <input
                           type="text"
-                          value={formDetails.player2}
-                          placeholder="Player 2"
-                          onChange={(e) =>
-                            onFormUpdate("player2name", e.target.value)
-                          }
+                          required
+                          placeholder="Player 1 NIC Number"
+                          onChange={(e) => onFormUpdate("nic1", e.target.value)}
+                          value={formDetails.nic1}
+                          maxLength={20}
                         />
+                      </Col>
+                      <Col size={12} sm={6} className="px-1">
                         <input
-                          type="tel"
-                          value={formDetails.phone}
-                          placeholder="Player 1 Phone Number"
-                          maxLength={10}
+                          type="text"
+                          placeholder="Player 1 Email"
                           onChange={(e) =>
-                            onFormUpdate("phone", e.target.value)
+                            onFormUpdate("email1", e.target.value)
                           }
+                          value={formDetails.email1}
+                          required
+                          maxLength={30}
                         />
+                      </Col>
 
-                        <button type="submit">
-                          <span>{buttonText}</span>
-                        </button>
+                      <Col size={12} sm={6} className="px-1">
+                        <input
+                          type="text"
+                          required
+                          placeholder="Player 2 Name"
+                          onChange={(e) =>
+                            onFormUpdate("player2", e.target.value)
+                          }
+                          value={formDetails.player2}
+                          maxLength={20}
+                        />
+                      </Col>
+                      <Col size={12} sm={6} className="px-1">
+                        <input
+                          type="text"
+                          required
+                          placeholder="Player 2 Phone Number"
+                          maxLength={12}
+                          onChange={(e) =>
+                            onFormUpdate("phone2", e.target.value)
+                          }
+                          value={formDetails.phone2}
+                        />
+                      </Col>
+                      <Col size={12} sm={6} className="px-1">
+                        <input
+                          type="text"
+                          placeholder="Player 2 NIC Number"
+                          onChange={(e) => onFormUpdate("nic2", e.target.value)}
+                          value={formDetails.nic2}
+                          required
+                          maxLength={20}
+                        />
+                      </Col>
+                      <Col size={12} sm={6} className="px-1">
+                        <input
+                          type="text"
+                          placeholder="Player 2 Email"
+                          onChange={(e) =>
+                            onFormUpdate("email2", e.target.value)
+                          }
+                          value={formDetails.email2}
+                          required
+                          maxLength={30}
+                        />
+                      </Col>
+                      <Col size={12} sm={6} className="px-1">
+                        <button type="submit">Register</button>
                       </Col>
                       {status.message && (
                         <Col>

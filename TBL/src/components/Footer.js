@@ -23,7 +23,7 @@ export const Footer = () => {
             </div>
             <p>
               Copyright 2023. All Rights Reserved. <br />
-              <strong> NBL</strong>
+              <strong> TBL</strong>
             </p>
           </Col>
         </Row>

@@ -4,6 +4,7 @@ import headerImg from "../assets/img/banner.png";
 import { ArrowRightCircle } from "react-bootstrap-icons";
 import "animate.css";
 import TrackVisibility from "react-on-screen";
+import "./banner.css";
 
 export const Banner = () => {
   const [loopNum, setLoopNum] = useState(0);
@@ -70,9 +71,9 @@ export const Banner = () => {
                     isVisible ? "animate__animated animate__fadeIn" : ""
                   }
                 >
-                  <span className="tagline">Welcome to NBL Registration</span>
+                  <span className="tagline">Welcome to TBL Registration</span>
                   <h1>
-                    {`Hello There !!!`}{" "}
+                    {`Hello !!!`}{" "}
                     <span
                       className="txt-rotate"
                       dataPeriod="1000"

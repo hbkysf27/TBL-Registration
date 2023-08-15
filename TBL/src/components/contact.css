@@ -26,3 +26,28 @@ select:hover {
   box-shadow: 0 0 2em 0 #771c18;
 }
 
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+  .contact {
+    padding: 20px; /* Add some padding for better spacing */
+  }
+
+  select,
+  input[type="text"],
+  input[type="tel"],
+  input[type="email"],
+  button {
+    width: 100%; /* Make the inputs and button full width */
+    margin-top: 10px; /* Adjust margin for spacing */
+    margin-bottom: 10px; /* Adjust margin for spacing */
+  }
+
+  button {
+    font-size: 1rem; /* Decrease font size for better fit on mobile */
+  }
+
+  h2 {
+    font-size: 0.5em; /* Adjust the heading font size for mobile */
+  }
+}

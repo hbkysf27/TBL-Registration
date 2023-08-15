@@ -4,14 +4,25 @@ import contactImg from "../assets/img/logo.png";
 import "animate.css";
 import TrackVisibility from "react-on-screen";
 import "./contact.css";
-import { useDispatch } from "react-redux";
 
 export const Contact = () => {
   const [formDetails, setFormDetails] = useState({});
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState({});
 
-  const dispatch = useDispatch();
+  const [user, setUser] = useState({
+    clubname: "",
+    cluboruni: "",
+    category: "",
+    player1: "",
+    phone1: "",
+    nic1: "",
+    email1: "",
+    player2: "",
+    phone2: "",
+    nic2: "",
+    email2: "",
+  });
 
   const onFormUpdate = (field, value) => {
     setFormDetails({
@@ -56,9 +67,24 @@ export const Contact = () => {
                   <form onSubmit={handleSubmit}>
                     <Row>
                       <Col size={12} sm={6} className="px-1">
+                        <select
+                          name="cluboruni"
+                          id="cluboruni"
+                          required
+                          onChange={(e) =>
+                            onFormUpdate("cluboruni", e.target.value)
+                          }
+                          value={formDetails.category}
+                        >
+                          <option value="">Select Club/Uni</option>
+                          <option value="RotractClub">Rotract Club</option>
+                          <option value="Uni">Univeristy</option>
+                        </select>
+                      </Col>
+                      <Col size={12} sm={6} className="px-1">
                         <input
                           type="text"
-                          placeholder="Name Of the Rotaract Club"
+                          placeholder="Name Of the Rotaract Club/ University"
                           required
                           onChange={(e) =>
                             onFormUpdate("clubname", e.target.value)
@@ -177,7 +203,7 @@ export const Contact = () => {
                           maxLength={30}
                         />
                       </Col>
-                      <Col size={12} sm={6} className="px-1">
+                      <Col size={12} sm={12} className="px-1">
                         <button type="submit">Register</button>
                       </Col>
                       {status.message && (
